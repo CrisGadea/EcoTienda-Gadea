@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import '../App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import KartWidget from './KartWidget';
+import image from '../assets/carrito.jpg';
 import { Navbar,  NavDropdown, Nav, Form, FormControl, Button} from 'react-bootstrap';
 
 class NavBar extends Component {
@@ -26,7 +27,7 @@ class NavBar extends Component {
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action/3.7">Sign Out</NavDropdown.Item>
                     </NavDropdown>
-
+                    <KartWidget img={image}/>
                 </Nav>
                 <Form inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
