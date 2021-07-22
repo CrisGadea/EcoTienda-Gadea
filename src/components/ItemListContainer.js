@@ -1,15 +1,13 @@
-import React, { Component } from "react";
+import { ItemList } from './ItemList';
 import '../App.css';
-//import { Navbar,  NavDropdown, Nav, Form, FormControl, Button} from 'react-bootstrap';
 
-class ItemListContainer extends Component {
-    render() {
-        return(
-            <div>
-                <h1>{this.props.saludo}</h1>
-            </div>
-        );
-    }
+function ItemListContainer({saludo,items}) {
+    return(
+        <div>
+            <h1>{saludo}</h1>
+            <ItemList items={ items }/>
+        </div>
+    );
 }
 
 export default ItemListContainer;
