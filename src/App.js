@@ -13,13 +13,15 @@ function App() {
         id: "123",
         name: "title",
         price: 14.54,
-        imageUrl: Cart
+        imageUrl: Cart,
+        description: "Description 1"
       },
       {
         id: "1234",
         name: "title2",
         price: 24.54,
-        imageUrl: Cart
+        imageUrl: Cart,
+        description: "Description 2"
       }
     ]
   )
