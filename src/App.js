@@ -4,6 +4,7 @@ import ItemCount from './components/ItemCount';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, {useState} from "react";
 import Cart from './assets/kart.png';
+import ItemDetailContainer from './components/ItemDetailContainer';
 
 function App() {
   const [items] = useState(
@@ -27,6 +28,7 @@ function App() {
       <NavBar/>
       <ItemListContainer saludo="Hello" items={items}/>
       <ItemCount stock={5} inicial={1}/>
+      <ItemDetailContainer items={items}/>
     </div>
   );
 }
