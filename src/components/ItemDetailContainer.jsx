@@ -1,10 +1,17 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import ItemDetail from './ItemDetail';
 
 
 const ItemDetailContainer = ({items}) => {
 
     const [itemsList, setItemList] = useState([]);
+
+    const { id } = useParams();
+
+    let it={};
+
+    console.log("el id del parametro es = " + id);
 
     const getItems = () => {
         return new Promise((resolve, reject) => {
@@ -17,13 +24,18 @@ const ItemDetailContainer = ({items}) => {
     getItems()
     .then( (resolve) => setItemList(resolve));
 
+    itemsList.map(function(item) {
+        if (item.id===id){
+            it=item;
+        }
+        return it;
+    });
+
+   
+
     return (
         <div>
-            <ul>
-                {itemsList.map(item => (
-                    <ItemDetail item={item}/>
-                ))}
-            </ul>
+            <ItemDetail key={it.id} item={it}/>            
         </div>
     );
 

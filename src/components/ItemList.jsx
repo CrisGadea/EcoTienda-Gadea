@@ -8,7 +8,7 @@ export function ItemList ({items}) {
     setTimeout(
         () => {
            resolve(items) 
-        },3000
+        },2000
     )})};
   getItems()
   .then( (resolve) => setItemsList(resolve)

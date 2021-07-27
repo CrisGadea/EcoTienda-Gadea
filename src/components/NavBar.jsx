@@ -2,13 +2,16 @@ import React, { Component } from "react";
 import '../App.css';
 import KartWidget from './KartWidget';
 import image from '../assets/carrito.jpg';
+import { Link } from "react-router-dom";
 import { Navbar,  NavDropdown, Nav, Form, FormControl, Button} from 'react-bootstrap';
 
-class NavBar extends Component {
+class NavBarC extends Component {
     render() {
       return (
         <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="#home">EcoHouse</Navbar.Brand>
+            <Link to="/">
+                <Navbar.Brand href="#home">EcoHouse</Navbar.Brand>
+            </Link>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
@@ -39,4 +42,4 @@ class NavBar extends Component {
     }
   }
   
-  export default NavBar;
+  export default NavBarC;
