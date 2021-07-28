@@ -13,28 +13,29 @@ function App() {
     [
       {
         id: "1",
-        name: "title",
+        name: "Cart",
         price: 14.54,
         imageUrl: Cart,
         description: "Description 1",
-        category: "Food"
+        categoryId: "1"
       },
       {
         id: "2",
-        name: "title2",
+        name: "Notebook",
         price: 24.54,
         imageUrl: Notebook,
         description: "Description 2",
-        category: "Technology"
+        categoryId: "4"
       }
     ]
-  )
+  );
+  
   return (
     <BrowserRouter>
       <NavBar/>
       <Switch>
         <Route exact path="/">
-          <ItemListContainer saludo="Welcome" items={items}/>
+          <ItemListContainer saludo="Home" items={items}/>
         </Route>
         <Route path="/category/:id">
           <ItemListContainer saludo="Categories" items={items}/>

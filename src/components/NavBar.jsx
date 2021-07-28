@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import '../App.css';
 import KartWidget from './KartWidget';
 import image from '../assets/carrito.jpg';
+import Eco from '../assets/ecohouse.jpg';
 import { Link } from "react-router-dom";
 import { Navbar,  NavDropdown, Nav, Form, FormControl, Button} from 'react-bootstrap';
 
@@ -10,19 +11,19 @@ class NavBarC extends Component {
       return (
         <Navbar bg="light" expand="lg">
             <Link to="/">
-                <Navbar.Brand href="#home">EcoHouse</Navbar.Brand>
+                <Navbar.Brand href="/"><img src={Eco} alt="eco" width="100px"/></Navbar.Brand>
             </Link>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="#home">Products</Nav.Link>
                     <NavDropdown title="Categories" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Foods</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Drinks</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Clothes</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.4">Technology</NavDropdown.Item>
+                        
+                        <Link to="/category/1">Foods</Link>
+                        <Link to="/category/2">Drinks</Link>
+                        <Link to="/category/3">Clothes</Link>
+                        <Link to="/category/4">Technology</Link>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.5">House</NavDropdown.Item>
+                        <Link to="/category/5">House</Link>
                     </NavDropdown>
                     <Nav.Link href="#link">Favorities</Nav.Link>
                     <NavDropdown title="Account" id="basic-nav-dropdown">

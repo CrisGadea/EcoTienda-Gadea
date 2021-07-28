@@ -38,7 +38,7 @@ class ItemCount extends Component{
                 <input type="number" id="count" defaultValue={this.state.in}></input>
                 <button onClick={this.incrementar}>+</button>
                 <button onClick={this.decrementar}>-</button>
-                <button onClick={this.addOn}>Realizar Pedido</button>
+                <button onClick={this.addOn}>Add to cart</button>
             </div> 
         );
     }

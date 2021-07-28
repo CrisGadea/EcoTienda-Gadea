@@ -1,18 +1,23 @@
 import '../App.css';
 import {Item} from './Item';
-import React, { useState }  from 'react';
+import React, { useState, useEffect }  from 'react';
+import { useParams } from 'react-router';
 
 export function ItemList ({items}) {
   const [itemsList, setItemsList] = useState([]);
+  const {id: idParams} = useParams();
+  console.log(idParams);
   const getItems = () => { return new Promise((resolve, reject) => {
     setTimeout(
         () => {
-           resolve(items) 
+           resolve(idParams ? items.filter(item => item.categoryId === idParams) : items) 
         },2000
     )})};
-  getItems()
-  .then( (resolve) => setItemsList(resolve)
-  )
+
+    useEffect(() => {
+        getItems().then((resolve) => setItemsList(resolve))
+    }, [idParams])
+  
 
     return (
         <div>

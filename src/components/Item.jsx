@@ -7,7 +7,7 @@ export function Item({ item }) {
             <div className="card">
                 <div className="px-2 pt-2 position-relative">
                     <NavLink to={`/items/${item.id}`}>
-                        <img alt="carro" src={item.imageUrl} className="card-img" height="125 rem"/>
+                        <img alt="imagen" src={item.imageUrl} className="card" height="225 rem"/>
                     </NavLink>
                 </div>
                 <div className="card-body">
