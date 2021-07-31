@@ -1,47 +1,55 @@
-import React, { Component} from "react";
+import React, { useState, Component} from "react";
 import '../App.css';
 
-class ItemCount extends Component{
-    stock = this.props.stock;
-    constructor(props) {
-        super(props);
-        this.state = {in: props.inicial};
-      }
+const ItemCount = ({inicial, stock}) => {
 
-    addOn = () => {
-        const stock = parseInt(document.getElementById("count").value);
-        if (this.stock >= stock){
-            alert("Producto/s agregado/s");
+    const [stocks, setStocks] = useState(stock);
+    const [count, setCount] = useState(inicial);
+    const [total, setTotal] = useState(0);
+
+
+
+    const addOn = () => {
+        let button= document.getElementById("finishBuy");
+        let navCount= document.getElementById("navCount");
+        const cantidad = parseInt(document.getElementById("count").value);
+        if (stocks >= cantidad){
+            button.style.display="flex";
+            navCount.style.display="none";
+            setTotal(count);          
+            alert("Producto/s agregado/s");     
         }
     }
-    incrementar=()=>{
+    const incrementar=()=>{
+        console.log("pasa por el incrementar antes , el ini es " + count);
         let input = document.getElementById("count");
-        if (input.value<this.stock){
+        let contador=count;
+        if (count<stocks){
             // eslint-disable-next-line react/no-direct-mutation-state
-            this.setState({in:(++this.state.in)});
-            input.value = this.state.in;
+            // eslint-disable-next-line no-const-assign
+            setCount(++contador);
+            input.value=count;
         }
     }
-    decrementar=()=>{
+    const decrementar=()=>{
         let input = document.getElementById("count");
-        if (input.value>this.props.inicial){
+        if (count>1){
         // eslint-disable-next-line react/no-direct-mutation-state
-        this.setState({in:(--this.state.in)});
-        input.value= this.state.in;       
-        }else{
-             input.value= this.props.inicial;
+        setCount(count -1 );    
         }
+        input.value=count;
+        console.log("pasa por el decermentar despues, el ini es " + count);
+        
     }
-    render() {
-        return(
-           <div>
-                <input type="number" id="count" defaultValue={this.state.in}></input>
-                <button onClick={this.incrementar}>+</button>
-                <button onClick={this.decrementar}>-</button>
-                <button onClick={this.addOn}>Add to cart</button>
-            </div> 
-        );
-    }
+
+    return(
+        <div>
+             <input type="number" id="count" defaultValue={count}></input>
+             <button onClick={incrementar}>+</button>
+             <button onClick={decrementar}>-</button>
+             <button onClick={addOn}>Add to cart</button>
+         </div> 
+     );
 }
 
 export default ItemCount;

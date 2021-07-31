@@ -1,16 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const Cart = () => {
     return (
         <div>
-            
+            <h1>It Works!</h1>
         </div>
     );
-}
-
-Cart.propTypes = {
-
 }
 
 export default Cart
