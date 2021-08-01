@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from './ItemDetail';
+import {db} from '../firebase/firebase';
 
 
 const ItemDetailContainer = ({items}) => {
@@ -11,18 +12,23 @@ const ItemDetailContainer = ({items}) => {
 
     let it={};
 
+    useEffect(() => {
+        obtenerProductos()
+    }, []);
+
     console.log("el id del parametro es = " + id);
 
-    const getItems = () => {
-        return new Promise((resolve, reject) => {
-            setTimeout(
-                () => {
-                   resolve(items) 
-                },3000
-            )})
+    const obtenerProductos = () => {
+        const products = db
+            .collection("Products");
+        products.get().then(((query) =>
+            setItemList(
+                query.docs.map((doc) => {
+                    return { ...doc.data(), id: doc.id }
+                })
+            )
+        ))
     }
-    getItems()
-    .then( (resolve) => setItemList(resolve));
 
     itemsList.map(function(item) {
         if (item.id===id){

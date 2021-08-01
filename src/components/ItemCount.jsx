@@ -1,11 +1,15 @@
-import React, { useState, Component} from "react";
+import React, { useState, useEffect} from "react";
 import '../App.css';
 
-const ItemCount = ({inicial, stock}) => {
+const ItemCount = ({inicial, stock, setCount}) => {
 
     const [stocks, setStocks] = useState(stock);
-    const [count, setCount] = useState(inicial);
+    const [cont, setCont] = useState();
     const [total, setTotal] = useState(0);
+
+    useEffect(() => {
+        setCount(cont)
+    }, [cont])
 
 
 
@@ -16,35 +20,35 @@ const ItemCount = ({inicial, stock}) => {
         if (stocks >= cantidad){
             button.style.display="flex";
             navCount.style.display="none";
-            setTotal(count);          
+            setTotal(cont);          
             alert("Producto/s agregado/s");     
         }
     }
     const incrementar=()=>{
-        console.log("pasa por el incrementar antes , el ini es " + count);
+        console.log("pasa por el incrementar antes , el ini es " + cont);
         let input = document.getElementById("count");
-        let contador=count;
-        if (count<stocks){
+        let contador=cont;
+        if (cont<stocks){
             // eslint-disable-next-line react/no-direct-mutation-state
             // eslint-disable-next-line no-const-assign
-            setCount(++contador);
-            input.value=count;
+            setCont(++contador);
+            input.value=cont;
         }
     }
     const decrementar=()=>{
         let input = document.getElementById("count");
-        if (count>1){
+        if (cont>1){
         // eslint-disable-next-line react/no-direct-mutation-state
-        setCount(count -1 );    
+        setCont(cont -1 );    
         }
-        input.value=count;
-        console.log("pasa por el decermentar despues, el ini es " + count);
+        input.value=cont;
+        console.log("pasa por el decermentar despues, el ini es " + cont);
         
     }
 
     return(
         <div>
-             <input type="number" id="count" defaultValue={count}></input>
+             <input type="number" id="count" defaultValue={cont}></input>
              <button onClick={incrementar}>+</button>
              <button onClick={decrementar}>-</button>
              <button onClick={addOn}>Add to cart</button>

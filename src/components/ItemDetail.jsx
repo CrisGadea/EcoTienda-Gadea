@@ -1,12 +1,14 @@
 import '../App.css';
 import ItemCount from './ItemCount';
 import { Link } from "react-router-dom";
+import {useContext, useState} from 'react';
+import { Context } from '../services/Context';
+
 
 const ItemDetail = ({item}) => {
 
-    // const onAdd = (quantity) => {
-
-    // }
+    const {addToCart, removeFromCart, cart} = useContext(Context);
+    const [count, setCount] = useState();
 
     return (
         <div>
@@ -15,10 +17,9 @@ const ItemDetail = ({item}) => {
             <h2>${item.price}</h2>
             <p>{item.description}</p>
             <div id="navCount">
-            <ItemCount stock={5} inicial={1}/>
+            <ItemCount stock={5} inicial={1} count={setCount}/>
             </div>
-            <Link to="/cart"><button className="hidden" id="finishBuy">Finish buy</button></Link>
-            
+            <Link to="/cart"><button className="hidden" id="finishBuy">Finish buy</button></Link> 
         </div>
     );
 }
