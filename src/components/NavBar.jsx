@@ -17,19 +17,18 @@ class NavBarC extends Component {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     <NavDropdown title="Categories" id="basic-nav-dropdown">
-                        
-                        <Link to="/category/1">Foods</Link>
-                        <Link to="/category/2">Drinks</Link>
-                        <Link to="/category/3">Clothes</Link>
-                        <Link to="/category/4">Technology</Link>
+                        <NavDropdown.Item><Link to="/category/1">Foods</Link></NavDropdown.Item>
+                        <NavDropdown.Item><Link to="/category/2">Drinks</Link></NavDropdown.Item>
+                        <NavDropdown.Item><Link to="/category/3">Clothes</Link></NavDropdown.Item>
+                        <NavDropdown.Item><Link to="/category/4">Technology</Link></NavDropdown.Item>                        
                         <NavDropdown.Divider />
-                        <Link to="/category/5">House</Link>
+                        <NavDropdown.Item><Link to="/category/5">House</Link></NavDropdown.Item>
                     </NavDropdown>
                     <Nav.Link href="#link">Favorities</Nav.Link>
                     <NavDropdown title="Account" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.6">Info</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/1">Info</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.7">Sign Out</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/2">Sign Out</NavDropdown.Item>
                     </NavDropdown>
                     <KartWidget img={image}/>
                 </Nav>

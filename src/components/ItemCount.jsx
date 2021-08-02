@@ -1,15 +1,11 @@
-import React, { useState, useEffect} from "react";
+import React, { useState} from "react";
 import '../App.css';
 
-const ItemCount = ({inicial, stock, setCount}) => {
+const ItemCount = ({inicial, stock, count, item}) => {
 
     const [stocks, setStocks] = useState(stock);
-    const [cont, setCont] = useState();
+    const [cont, setCont] = useState(inicial);
     const [total, setTotal] = useState(0);
-
-    useEffect(() => {
-        setCount(cont)
-    }, [cont])
 
 
 
@@ -20,7 +16,7 @@ const ItemCount = ({inicial, stock, setCount}) => {
         if (stocks >= cantidad){
             button.style.display="flex";
             navCount.style.display="none";
-            setTotal(cont);          
+            setTotal(cont);     
             alert("Producto/s agregado/s");     
         }
     }
@@ -29,8 +25,6 @@ const ItemCount = ({inicial, stock, setCount}) => {
         let input = document.getElementById("count");
         let contador=cont;
         if (cont<stocks){
-            // eslint-disable-next-line react/no-direct-mutation-state
-            // eslint-disable-next-line no-const-assign
             setCont(++contador);
             input.value=cont;
         }
@@ -38,7 +32,6 @@ const ItemCount = ({inicial, stock, setCount}) => {
     const decrementar=()=>{
         let input = document.getElementById("count");
         if (cont>1){
-        // eslint-disable-next-line react/no-direct-mutation-state
         setCont(cont -1 );    
         }
         input.value=cont;

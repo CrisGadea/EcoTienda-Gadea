@@ -1,23 +1,25 @@
 import '../App.css';
 import ItemCount from './ItemCount';
 import { Link } from "react-router-dom";
-import {useContext, useState} from 'react';
-import { Context } from '../services/Context';
+import {useState, useEffect} from 'react';
 
 
 const ItemDetail = ({item}) => {
 
-    const {addToCart, removeFromCart, cart} = useContext(Context);
     const [count, setCount] = useState();
+
+    useEffect(() => {
+        setCount()
+    }, [])
 
     return (
         <div>
             <h1>{item.name}</h1>
-            <img src={item.imageUrl} alt="carrito" className="Carrito"/>
+            <img src={item.img} alt="carrito" className="Carrito"/>
             <h2>${item.price}</h2>
             <p>{item.description}</p>
             <div id="navCount">
-            <ItemCount stock={5} inicial={1} count={setCount}/>
+                <ItemCount stock={5} inicial={1} count={setCount} item={item}/>
             </div>
             <Link to="/cart"><button className="hidden" id="finishBuy">Finish buy</button></Link> 
         </div>

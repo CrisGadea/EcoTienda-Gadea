@@ -4,14 +4,14 @@ import React, { useState, useEffect }  from 'react';
 import { useParams } from 'react-router';
 
 export function ItemList ({items}) {
-  const [itemsList, setItemsList] = useState([]);
+  const [itemsList, setItemsList] = useState(items);
   const {id: idParams} = useParams();
   console.log(idParams);
   const getItems = () => { return new Promise((resolve, reject) => {
     setTimeout(
         () => {
            resolve(idParams ? items.filter(item => item.categoryId === idParams) : items) 
-        },2000
+        },1000
     )})};
 
     useEffect(() => {
