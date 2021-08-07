@@ -17,7 +17,6 @@ export const DataProvider = ({children}) =>{
             setCart([...cart, receivedItem]);
             vari += parseInt(receivedItem.quantity);
             setQuantity(vari);
-            console.log("que hay en el cartQuantity " + cartQuantity)
             
         }else{
             alert("Ya se encuentra este producto en el carrito.")

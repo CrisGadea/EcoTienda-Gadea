@@ -14,7 +14,7 @@ const Cart = () => {
     useEffect(() => {
         setQuantity()
         calculateQuantity();
-    }, []);
+    }, [cartQuantity]);
 
     const calculateTotal = () => {
         let acumulador=0

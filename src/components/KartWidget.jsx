@@ -28,7 +28,6 @@ const KartWidget = () => {
          ) );
 
         setQuantity(aux);
-        console.log("no viene el puto cartQuantity? " + cartQuantity)
 
     }
 
