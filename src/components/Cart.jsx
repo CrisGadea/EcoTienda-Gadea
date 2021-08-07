@@ -5,6 +5,7 @@ const Cart = () => {
 
     const { cart, removeFromCart, clear, setQuantity, cartQuantity } = useContext(CartContext);
     const [total, setTotal] = useState(0);
+    const [messagge, setMessagge] = useState("No hay productos agregados.")
 
     useEffect(() => {
         setTotal()
@@ -12,9 +13,20 @@ const Cart = () => {
     }, [total]);
 
     useEffect(() => {
-        setQuantity()
+        setQuantity(cartQuantity)
         calculateQuantity();
     }, [cartQuantity]);
+
+    useEffect(() => {
+        isEmpty()
+    }, [])
+
+    const isEmpty = () => {
+        let oculto = document.querySelector(".oculto");
+        if (cart.lenght > 0) {
+            oculto.className = "hidden";
+        } 
+    }
 
     const calculateTotal = () => {
         let acumulador=0
@@ -35,6 +47,7 @@ const Cart = () => {
 
     return (
         <div>
+            <h1 className="oculto">{messagge}</h1>
             <ul>
             {cart.map(item => (
                 <div classtype="mb-3">
@@ -73,7 +86,7 @@ const Cart = () => {
             </ul>
             <br/><br/>
             <p>Total: ${total}</p>
-            <button type="button" classtype="btn btn-primary btn-block" onClick="#">Comprar</button>
+            <button type="button" classtype="btn btn-primary btn-block">Comprar</button>
             <br/>
             <button type="button" classtype="btn btn-primary btn-block" onClick={clear}>Vaciar Carrito</button>
         </div>
