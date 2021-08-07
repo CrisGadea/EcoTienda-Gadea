@@ -1,13 +1,24 @@
-import React, {createContext, useState} from 'react';
-export const Context = createContext();
+import React, {createContext, useState, useEffect} from 'react';
+export const CartContext = createContext();
 
 export const DataProvider = ({children}) =>{
     const [cart, setCart] = useState([]);//va a ser un array de objetos
+    const [cartQuantity, setQuantity] = useState(0);
+
+    useEffect(() => {
+        setQuantity()
+    }, [])
 
     const isntInCart = (receivedItem) => cart.filter(item => item.id === receivedItem.id).length === 0;
     const addToCart = (receivedItem) =>{
+        console.log("el item es : " + receivedItem.name + "y la cantidad es " + receivedItem.quantity);
+        let vari=0
         if (isntInCart(receivedItem)){
-            setCart([...cart, receivedItem])
+            setCart([...cart, receivedItem]);
+            vari += parseInt(receivedItem.quantity);
+            setQuantity(vari);
+            console.log("que hay en el cartQuantity " + cartQuantity)
+            
         }else{
             alert("Ya se encuentra este producto en el carrito.")
         }
@@ -19,7 +30,9 @@ export const DataProvider = ({children}) =>{
 
     const clear = () => setCart([]);
 
-    return <Context.Provider value = {{cart, setCart, addToCart, removeFromCart, clear}}>
-        {children}
-    </Context.Provider>
+    return <CartContext.Provider value = {{cart, cartQuantity, setQuantity, setCart, addToCart, removeFromCart, clear}}>
+                {children}
+           </CartContext.Provider>
 }
+
+export default CartContext;

@@ -16,8 +16,6 @@ const ItemDetailContainer = ({items}) => {
         obtenerProductos()
     }, []);
 
-    console.log("el id del parametro es = " + id);
-
     const obtenerProductos = () => {
         const products = db
             .collection("Products");

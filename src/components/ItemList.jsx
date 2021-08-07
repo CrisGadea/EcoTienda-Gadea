@@ -6,17 +6,11 @@ import { useParams } from 'react-router';
 export function ItemList ({items}) {
   const [itemsList, setItemsList] = useState(items);
   const {id: idParams} = useParams();
-  console.log(idParams);
-  const getItems = () => { return new Promise((resolve, reject) => {
-    setTimeout(
-        () => {
-           resolve(idParams ? items.filter(item => item.categoryId === idParams) : items) 
-        },1000
-    )})};
+  const getItems = () => { return idParams ? items.filter(item => item.categoryId === idParams) : items };
 
     useEffect(() => {
-        getItems().then((resolve) => setItemsList(resolve))
-    }, [idParams])
+        getItems()
+    }, [idParams]);
   
 
     return (

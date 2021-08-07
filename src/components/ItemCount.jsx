@@ -1,4 +1,5 @@
-import React, { useState} from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { CartContext } from "../services/Context";
 import '../App.css';
 
 const ItemCount = ({inicial, stock, count, item}) => {
@@ -6,6 +7,13 @@ const ItemCount = ({inicial, stock, count, item}) => {
     const [stocks, setStocks] = useState(stock);
     const [cont, setCont] = useState(inicial);
     const [total, setTotal] = useState(0);
+    const { addToCart, cart } = useContext(CartContext);
+
+    //console.log(cart);
+
+    useEffect(() => {
+        //console.log(cart);
+    }, [cart]);
 
 
 
@@ -16,28 +24,27 @@ const ItemCount = ({inicial, stock, count, item}) => {
         if (stocks >= cantidad){
             button.style.display="flex";
             navCount.style.display="none";
-            setTotal(cont);     
-            alert("Producto/s agregado/s");     
+            setTotal(cont);
+            addToCart({...item, quantity: cantidad});     
+            alert("Producto/s agregado/s");
         }
-    }
+    };
     const incrementar=()=>{
-        console.log("pasa por el incrementar antes , el ini es " + cont);
         let input = document.getElementById("count");
         let contador=cont;
         if (cont<stocks){
             setCont(++contador);
             input.value=cont;
         }
-    }
+    };
     const decrementar=()=>{
         let input = document.getElementById("count");
         if (cont>1){
         setCont(cont -1 );    
         }
         input.value=cont;
-        console.log("pasa por el decermentar despues, el ini es " + cont);
         
-    }
+    };
 
     return(
         <div>
@@ -47,6 +54,6 @@ const ItemCount = ({inicial, stock, count, item}) => {
              <button onClick={addOn}>Add to cart</button>
          </div> 
      );
-}
+};
 
 export default ItemCount;
