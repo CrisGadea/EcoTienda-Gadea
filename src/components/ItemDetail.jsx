@@ -15,7 +15,7 @@ const ItemDetail = ({item}) => {
     return (
         <div>
             <h1>{item.name}</h1>
-            <img src={item.img} alt="carrito" className="Carrito"/>
+            <img src={item.img} alt="carrito" className="Carrito" width="250px" height="250px"/>
             <h2>${item.price}</h2>
             <p>{item.description}</p>
             <div id="navCount">

@@ -7,10 +7,10 @@ import { Nav } from 'react-bootstrap';
 
 const KartWidget = () => {
 
-    const { cartQuantity, cart, setQuantity } = useContext(CartContext);
+    const { cartQuantity, cart, setQuantity, calculateQuantity } = useContext(CartContext);
 
     const [kart, setKart] = useState(cart);
-    const [quantity, setQuantity2] = useState(cartQuantity);
+    const [quantity, setQuantity2] = useState(cart.length);
 
     useEffect(() => {
         
@@ -19,17 +19,6 @@ const KartWidget = () => {
         calculateQuantity()
 
     }, [])
-
-    
-    const calculateQuantity = () => {
-        let aux = 0;
-        kart.map( item => (
-            aux += parseInt(item.quantity)
-         ) );
-
-        setQuantity(aux);
-
-    }
 
         return(
             <Nav.Link href="#home">

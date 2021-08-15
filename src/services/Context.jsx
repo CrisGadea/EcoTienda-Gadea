@@ -4,10 +4,11 @@ export const CartContext = createContext();
 export const DataProvider = ({children}) =>{
     const [cart, setCart] = useState([]);//va a ser un array de objetos
     const [cartQuantity, setQuantity] = useState(0);
+    const [buyer, setBuyer] = useState({});
 
     useEffect(() => {
         setQuantity()
-    }, [])
+    }, [cart])
 
     const isntInCart = (receivedItem) => cart.filter(item => item.id === receivedItem.id).length === 0;
     const addToCart = (receivedItem) =>{
@@ -23,13 +24,23 @@ export const DataProvider = ({children}) =>{
         }
     };
 
+    const calculateQuantity = () => {
+        let aux = 0;
+        cart.map( item => (
+            aux += parseInt(item.quantity)
+         ) );
+
+        setQuantity(aux);
+
+    };
+
     const removeFromCart = (id) => {
         setCart(cart.filter(prod => prod.id !== id))
     }
 
     const clear = () => setCart([]);
 
-    return <CartContext.Provider value = {{cart, cartQuantity, setQuantity, setCart, addToCart, removeFromCart, clear}}>
+    return <CartContext.Provider value = {{cart, cartQuantity, buyer, setBuyer, calculateQuantity, setQuantity, setCart, addToCart, removeFromCart, clear}}>
                 {children}
            </CartContext.Provider>
 }

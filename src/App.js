@@ -8,6 +8,8 @@ import Footer from "./components/Footer";
 import Cart from "./components/Cart";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { DataProvider } from "./services/Context";
+import BuyerForm from "./components/BuyerForm";
+import ProductOrdering from "./components/ProductOrdering";
 
 function App() {
 
@@ -35,16 +37,22 @@ function App() {
       <NavBar/>
       <Switch>
         <Route exact path="/">
-            <ItemListContainer saludo="Home" items={itemsList}/>
+            <ItemListContainer saludo="Home"/>
         </Route>
         <Route path="/category/:id">
-            <ItemListContainer saludo="Categories" items={itemsList}/>
+            <ItemListContainer saludo="Categories"/>
         </Route>
         <Route path="/items/:id">         
-            <ItemDetailContainer items={itemsList}/>
+            <ItemDetailContainer/>
         </Route>
         <Route exact path="/cart">
           <Cart/>
+        </Route>
+        <Route exact path="/form">
+          <BuyerForm/>
+        </Route>
+        <Route exact path="/order">
+          <ProductOrdering/>
         </Route>
       </Switch>
       <Footer/>

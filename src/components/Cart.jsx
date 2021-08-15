@@ -1,21 +1,22 @@
 import React, {useContext, useState, useEffect} from 'react';
+import { Link } from "react-router-dom";
 import CartContext from '../services/Context';
 
 const Cart = () => {
 
-    const { cart, removeFromCart, clear, setQuantity, cartQuantity } = useContext(CartContext);
+    const { cart, removeFromCart, clear, setQuantity, calculateQuantity } = useContext(CartContext);
     const [total, setTotal] = useState(0);
     const [messagge, setMessagge] = useState("No hay productos agregados.")
 
     useEffect(() => {
         setTotal()
         calculateTotal();
-    }, [total]);
+    }, [cart]);
 
     useEffect(() => {
-        setQuantity(cartQuantity)
+        setQuantity(cart.lenght)
         calculateQuantity();
-    }, [cartQuantity]);
+    }, [cart]);
 
     useEffect(() => {
         isEmpty()
@@ -36,15 +37,6 @@ const Cart = () => {
         setTotal(acumulador);
     }
 
-    const calculateQuantity = () => {
-        let aux = 0;
-        cart.map( item => (
-            aux += parseInt(item.quantity)
-         ) );
-
-        setQuantity(aux);
-    }
-
     return (
         <div>
             <h1 className="oculto">{messagge}</h1>
@@ -55,7 +47,7 @@ const Cart = () => {
                         <div classtype="row mb-4">
                         <div classtype="col-md-5 col-lg-3 col-xl-3">
                             <div classtype="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
-                                <img classtype="img-fluid w-100" src={item.img} alt="Sample"/>
+                                <img classtype="img-fluid w-100" src={item.img} alt="Sample" height="250px" width="250px"/>
                                 
                             </div>
                         </div>
@@ -86,8 +78,10 @@ const Cart = () => {
             </ul>
             <br/><br/>
             <p>Total: ${total}</p>
-            <button type="button" classtype="btn btn-primary btn-block">Comprar</button>
-            <br/>
+            <Link to="/form">
+                <button type="button" classtype="btn btn-primary btn-block">Comprar</button>
+            </Link>
+            <br/><br/>
             <button type="button" classtype="btn btn-primary btn-block" onClick={clear}>Vaciar Carrito</button>
         </div>
     );
