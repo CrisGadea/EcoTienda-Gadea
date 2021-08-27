@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from './ItemDetail';
-import {db} from '../firebase/firebase';
+import {db} from '../../firebase/firebase';
 
 
-const ItemDetailContainer = ({items}) => {
+const ItemDetailContainer = () => {
 
     const [itemsList, setItemList] = useState([]);
 

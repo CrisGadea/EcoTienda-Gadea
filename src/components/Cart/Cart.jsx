@@ -1,45 +1,13 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext} from 'react';
 import { Link } from "react-router-dom";
-import CartContext from '../services/Context';
+import Context from '../../services/Context';
 
 const Cart = () => {
 
-    const { cart, removeFromCart, clear, setQuantity, calculateQuantity } = useContext(CartContext);
-    const [total, setTotal] = useState(0);
-    const [messagge, setMessagge] = useState("No hay productos agregados.")
-
-    useEffect(() => {
-        setTotal()
-        calculateTotal();
-    }, [cart]);
-
-    useEffect(() => {
-        setQuantity(cart.lenght)
-        calculateQuantity();
-    }, [cart]);
-
-    useEffect(() => {
-        isEmpty()
-    }, [])
-
-    const isEmpty = () => {
-        let oculto = document.querySelector(".oculto");
-        if (cart.lenght > 0) {
-            oculto.className = "hidden";
-        } 
-    }
-
-    const calculateTotal = () => {
-        let acumulador=0
-        cart.map(item => (
-            acumulador += (parseInt(item.price) * parseInt(item.quantity))
-        ));
-        setTotal(acumulador);
-    }
+    const { cart, removeFromCart, clear, total} = useContext(Context);
 
     return (
         <div>
-            <h1 className="oculto">{messagge}</h1>
             <ul>
             {cart.map(item => (
                 <div classtype="mb-3">

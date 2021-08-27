@@ -1,16 +1,19 @@
-import '../App.css';
-import ItemCount from './ItemCount';
+import React, { useState, useContext } from "react";
+import '../../App.css';
+import ItemCount from '../ItemCount/ItemCount';
 import { Link } from "react-router-dom";
-import {useState, useEffect} from 'react';
+import { Context } from "../../services/Context";
 
 
 const ItemDetail = ({item}) => {
 
     const [count, setCount] = useState();
+    const { addToCart } = useContext(Context);
 
-    useEffect(() => {
-        setCount()
-    }, [])
+    const handleSend = () =>{
+        addToCart({...item, quantity: count});
+    }
+
 
     return (
         <div>
@@ -19,7 +22,10 @@ const ItemDetail = ({item}) => {
             <h2>${item.price}</h2>
             <p>{item.description}</p>
             <div id="navCount">
-                <ItemCount stock={5} inicial={1} count={setCount} item={item}/>
+                <ItemCount stock={item.stock} setCount={setCount}/>
+                <Link  to="/cart">
+                    <button onClick={() => handleSend()}>Add to cart</button>
+                </Link>
             </div>
             <Link to="/cart"><button className="hidden" id="finishBuy">Finish buy</button></Link> 
         </div>

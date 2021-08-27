@@ -1,7 +1,7 @@
 import { ItemList } from './ItemList';
 import React, {useState, useEffect} from "react";
-import {db} from '../firebase/firebase';
-import '../App.css';
+import {db} from '../../firebase/firebase';
+import '../../App.css';
 
 
 
