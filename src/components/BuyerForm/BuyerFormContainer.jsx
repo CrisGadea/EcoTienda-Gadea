@@ -2,12 +2,12 @@ import React, {useContext} from 'react'
 import {db} from '../../firebase/firebase'
 import  BuyerForm  from './BuyerForm';
 import { Context } from '../../services/Context';
-import firebase from "firebase/app";
+import  firebase  from "firebase/app";
 
 export const BuyerFormContainer = () => {
     const {total, cart, clear} = useContext(Context);
 
-    const checkProductos = (nombre, email, celular) => {
+    const checkProductos = async (nombre, email, celular) => {
         let productos = db.collection("Products").where(
             firebase.firestore.FieldPath.documentId(),
             "in",
