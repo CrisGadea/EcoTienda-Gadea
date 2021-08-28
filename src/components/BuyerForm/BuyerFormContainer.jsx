@@ -5,15 +5,15 @@ import { Context } from '../../services/Context';
 import firebase from "firebase/app";
 
 export const BuyerFormContainer = () => {
-    const {total, cart, clear, setConteo} = useContext(Context);
+    const {total, cart, clear} = useContext(Context);
 
-    const checkProductos =  (nombre, email, celular) => {
+    const checkProductos = (nombre, email, celular) => {
         let productos = db.collection("Products").where(
             firebase.firestore.FieldPath.documentId(),
             "in",
             cart.map((item) => item.id)
         );
-        productos.get().then((query) =>{
+        productos.get().then( (query) =>{
             const batch = db.batch();
             const sinStock = [];
             query.docs.forEach((doc) => {
@@ -32,7 +32,7 @@ export const BuyerFormContainer = () => {
                 crearOrder(nombre, email, celular);
                 batch.commit().then(()=>{
                     clear();
-                    setConteo(0);
+                    //setConteo(0);
                 })
             }else{
                 alert("Sin stock!! \n Revisar la consola para mas detalle.")

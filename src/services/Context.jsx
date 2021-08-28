@@ -18,7 +18,6 @@ export const DataProvider = ({children}) =>{
             let counti = conteo + receivedItem.quantity;
             setConteo(counti);
             setCart([...cart, receivedItem]);
-            console.log(receivedItem.quantity, conteo);
             
         }else{
             alert("Ya se encuentra este producto en el carrito.")
