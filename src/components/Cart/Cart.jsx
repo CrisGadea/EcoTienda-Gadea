@@ -10,7 +10,7 @@ const Cart = () => {
         <div>
             <ul>
             {cart.map(item => (
-                <div classtype="mb-3">
+                <div classtype="mb-3" key={item.id}>
                     <div classtype="pt-4 wish-list">
                         <div classtype="row mb-4">
                         <div classtype="col-md-5 col-lg-3 col-xl-3">
@@ -30,7 +30,7 @@ const Cart = () => {
                                 </div>
                                 <div classtype="d-flex justify-content-between align-items-center">
                                     <div>
-                                        <button type="button" classtype="btn btn-primary btn-block" onClick={() => {removeFromCart(item.id)}}>Remove Item</button>
+                                        <button classtype="btn btn-primary btn-block" onClick={() => {removeFromCart(item.id)}}>Remove Item</button>
                                     </div>
                                     <p classtype="mb-0"><span><strong id="summary">${ item.price }</strong></span></p>
                                 </div>

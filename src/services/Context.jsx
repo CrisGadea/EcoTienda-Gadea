@@ -3,21 +3,22 @@ export const Context = createContext();
 
 export const DataProvider = ({children}) =>{
     const [cart, setCart] = useState([]);
-    const [cartQuantity, setCartQuantity] = useState(0);
     const [total, setTotal] = useState(0);
+    const [conteo, setConteo] = useState(0);
 
     useEffect(() => {
         calculateTotal();
         // eslint-disable-next-line
-    }, [cart, total]);
+    }, [cart]);
 
     const isntInCart = (receivedItem) => cart.filter(item => item.id === receivedItem.id).length === 0;
     const addToCart = (receivedItem) =>{
-        console.log(receivedItem.quantity, cartQuantity);
         
         if (isntInCart(receivedItem)){
+            let counti = conteo + receivedItem.quantity;
+            setConteo(counti);
             setCart([...cart, receivedItem]);
-            setCartQuantity(cartQuantity + receivedItem.quantity);
+            console.log(receivedItem.quantity, conteo);
             
         }else{
             alert("Ya se encuentra este producto en el carrito.")
@@ -25,7 +26,7 @@ export const DataProvider = ({children}) =>{
     };
 
     const calculateTotal = () => {
-        let acumulador=0
+        let acumulador=0;
         cart.map(item => (
             acumulador += (parseInt(item.price) * parseInt(item.quantity))
         ));
@@ -35,15 +36,15 @@ export const DataProvider = ({children}) =>{
     const removeFromCart = (id) => {
         let cant = cart.find(prod => prod.id === id).quantity;
         setCart(cart.filter(prod => prod.id !== id));
-        setCartQuantity(cartQuantity - cant);
+        setConteo(conteo - cant);
     }
 
     const clear = () => {
         setCart([]);
-        setCartQuantity(0);
+        setConteo(0);
     };
 
-    return <Context.Provider value = {{cart, cartQuantity, total, setTotal, setCartQuantity, setCart, addToCart, removeFromCart, clear}}>
+    return <Context.Provider value = {{cart, conteo, total, setTotal, setCart, addToCart, removeFromCart, clear}}>
                 {children}
            </Context.Provider>
 }

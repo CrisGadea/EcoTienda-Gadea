@@ -2,11 +2,12 @@ import '../../App.css';
 import KartWidget from '../Cart/KartWidget';
 import Eco from '../../assets/ecohouse.jpg';
 import { Link } from "react-router-dom";
-import { Navbar,  NavDropdown, Nav, Form, FormControl, Button} from 'react-bootstrap';
+import { Navbar,  NavDropdown, Nav, Form} from 'react-bootstrap';
 
 const NavBarC = () => {
     
       return (
+        
             <Navbar bg="light" expand="lg">
                 <Link to="/">
                     <Navbar.Brand><img src={Eco} alt="eco" width="100px"/></Navbar.Brand>
@@ -22,17 +23,22 @@ const NavBarC = () => {
                             <NavDropdown.Divider />
                             <NavDropdown.Item><Link to="/category/5">House</Link></NavDropdown.Item>
                         </NavDropdown>
+                        <Nav.Link>Favorities</Nav.Link>
+                        <NavDropdown title="Account" id="basic-nav-dropdown">
+                            <NavDropdown.Item>Info</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item>Sign Out</NavDropdown.Item>
+                        </NavDropdown>
                         
-                        <Link to="/cart">
-                            <KartWidget/>
-                        </Link>                   
                     </Nav>
                     <Form inline>
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                        <Button variant="outline-success">Search</Button>
+                        <Link to="/cart">
+                            <KartWidget/>
+                        </Link>  
                     </Form>
                 </Navbar.Collapse>
         </Navbar>
+      
       );
     }
   
